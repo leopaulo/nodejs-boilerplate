@@ -1,0 +1,16 @@
+version: '3'
+services:
+  node:
+    image: nodejs-boilerplate
+    hostname: ${APP_HOSTNAME:-ws}
+    build:
+      context: .
+      target: dev
+    ports:
+      - ${DEV_FORWARD_PORT:-3000}:${APP_PORT:-3000}
+    volumes:
+      - ./:/var/www/
+
+volumes:
+  cache:
+    driver: local
